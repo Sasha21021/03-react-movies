@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import searchMovies from "../../api/searchMovies";
 import { toast } from "react-hot-toast";
-import type Movie from "../../types/movie";
+import type { Movie } from "../../types/movie";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import MovieGrid from "../MovieGrid/MovieGrid";
@@ -49,11 +49,8 @@ export default function App() {
     }
   };
 
-  const handleSelect = (id: number) => {
-    const movie = movies.find((m) => m.id === id);
-    if (movie) {
-      setSelectedMovie(movie);
-    }
+  const handleSelect = (movie: Movie) => {
+    setSelectedMovie(movie);
   };
 
   const handleCloseModal = () => {
@@ -62,7 +59,7 @@ export default function App() {
 
   return (
     <div className={styles.app}>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSubmit={handleSearch} />
 
       {isLoading ? (
         <Loader />
